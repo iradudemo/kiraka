@@ -5,12 +5,14 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const morgan = require("morgan");
+const connectToDb = require("./config/dbConn");
 
 const swaggerDocs = require("./public/api-docs/swagger");
 const errorHandler = require("./middlewares/error");
 const { Console } = require("console");
 
 require("dotenv").config();
+connectToDb();
 
 const app = express();
 swaggerDocs(app, process.env.PORT);
@@ -30,11 +32,6 @@ app.use("/user", require("./routes/user"));
 app.use("/comment", require("./routes/comment"));
 app.use("/announcement", require("./routes/announcement"));
 app.use(errorHandler);
-
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-});
-console.log("DB has been connected");
 
 app.listen(process.env.PORT || 3500, () => {
   console.log(`Server running at :${process.env.PORT}`);
