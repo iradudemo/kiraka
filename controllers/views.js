@@ -12,8 +12,8 @@ exports.getViews = asyncHandler(async (req, res, next) => {
 
     return res.status(200).json({
       success: true,
-      count: views.length,
-      data: views,
+      views: views.length,
+      // data: views,
     });
   } else {
     res.status(200).json(res.advancedResults);

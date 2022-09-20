@@ -30,6 +30,7 @@ app.use("/auth", require("./routes/auth"));
 app.use("/post", require("./routes/post"));
 app.use("/user", require("./routes/user"));
 app.use("/comment", require("./routes/comment"));
+app.use("/views", require("./routes/views"));
 app.use("/announcement", require("./routes/announcement"));
 app.use(errorHandler);
 
