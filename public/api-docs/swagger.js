@@ -10,6 +10,7 @@ const options = {
       description:
         "kiraka-Platform API for kiraka Platform\n This API Will Manage:\n 1. Users Operations\n 2. User Authentication & Authorisation\n 3.Comments, Post & Announcements",
     },
+    host: "kiraka-backend.herokuapp.com",
 
     paths: {},
     security: [

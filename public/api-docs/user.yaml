@@ -129,7 +129,7 @@ paths:
 /auth/login:
   post:
     tags:
-      - Login
+      - Auth
     summary: Login to kiraka Platform
     requestBody:
       required: true
@@ -159,7 +159,7 @@ paths:
 /auth/logout:
   get:
     tags:
-      - Lougout
+      - Auth
     summary: Logout from kiraka Platform
     responses:
       '200':
@@ -168,5 +168,106 @@ paths:
         description: unauthorized
       '400':
         description: Invalid data in the request
+      '500':
+        description: Internal server error
+
+/post:
+  post:
+    tags:
+      - post
+    summary: create a post 
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+              - user
+              - content
+            properties:
+              user:
+                type: string
+                description: user's id
+              content:
+                type: string
+                description: post content
+    responses:
+      '201':
+        description: post successfully created
+      '400':
+        description: Bad request
+      '401':
+        description: Wrong email or password
+      '500':
+        description: Opps! something went wrong
+/post/:   
+    get:
+      tags:
+        - post
+      summary: Get Post
+      responses:
+        '200':
+          description: All posts retrieved
+        '401':
+          description: unauthorized
+        '400':
+          description: Invalid data in the request
+        '500':
+          description: Internal server error
+/post/{_id}:
+  get:
+    tags:
+      - post
+    summary: Get a single post by id
+    parameters:
+        - in: path
+          name: _id
+    responses:
+      '200':
+        description: Success
+      '401':
+        description: unauthorized
+      '400':
+        description: Invalid data in the request
+      '500':
+        description: Internal server error
+
+  patch:
+    tags:
+      - post
+    summary: Update post
+    parameters:
+        - in: path
+          name: _id
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/definitions/post'
+    responses:
+      '200':
+        description: Post Updated Successfully
+      '400':
+        description: Invalid data in the request
+      '401':
+        description: Unauthorized
+      '500':
+        description: Internal server error
+
+  delete:
+    tags:
+      - post
+    summary: Delete a post
+    parameters:
+        - in: path
+          name: _id
+    responses:
+      '200':
+        description: post deleted Successfully
+      '400':
+        description: Invalid data in the request
+      '401':
+        description: Unauthorized
       '500':
         description: Internal server error
