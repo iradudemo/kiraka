@@ -110,12 +110,7 @@ paths:
     parameters:
         - in: path
           name: _id
-    requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: '#/definitions/users'
+    
     responses:
       '200':
         description: user data deleted Successfully
